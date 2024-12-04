@@ -1,0 +1,30 @@
+@using System.Globalization;
+@using Microsoft.AspNetCore.Localization;
+@using Microsoft.Extensions.Options;
+
+
+@{
+    var name = ViewBag.Name;
+    var requestFeatures = Context.Features.Get<IRequestCultureFeature>();
+}
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">culture name</th>
+      <th scope="col">culture name ui </th>
+      <th scope="col">date</th>
+      <th scope="col">price</th>
+      <th scope="col">number</th>
+    </tr>
+    
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">@requestFeatures.RequestCulture.Culture.Name</th>
+      <td>@requestFeatures.RequestCulture.UICulture.DisplayName</td>
+      <td>@DateTime.UtcNow.ToLongDateString()</td>
+      <td>@(772.7273.ToString("c"))</td>
+      <td>@(6232.23m.ToString("F2"))</td>
+    </tr>
+  </tbody>
+</table>

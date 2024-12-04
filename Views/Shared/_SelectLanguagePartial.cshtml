@@ -1,0 +1,21 @@
+
+@using Microsoft.Extensions.Options;
+@using Microsoft.Extensions.Localization;
+@using Microsoft.AspNetCore.Localization;
+@inject IOptions<RequestLocalizationOptions> locOptions;
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var supportedCultures = locOptions.Value.SupportedCultures.Select(c=>new SelectListItem(c.NativeName, c.Name));
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path)?"~/":$"~{Context.Request.Path}";
+}
+
+<form method="post" asp-controller="Test" asp-action="ChangeCulture" asp-route-returnUrl="@returnUrl">
+    <select 
+        onchange="this.form.submit()"  
+        name="culture" 
+        class="form-select" 
+        asp-items="@supportedCultures"
+        asp-for="@requestCulture.RequestCulture.UICulture.Name">
+
+    </select>
+</form>    
