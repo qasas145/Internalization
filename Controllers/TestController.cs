@@ -20,4 +20,8 @@ public class TestController : Controller {
         );
         return LocalRedirect(returnUrl);
     }
+    [HttpGet]
+    public IActionResult Create() {
+        return View();
+    }
 }

@@ -16,7 +16,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options=>{
 });
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
+builder.Services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
