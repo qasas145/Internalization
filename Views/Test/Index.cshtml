@@ -1,12 +1,15 @@
 @using System.Globalization;
 @using Microsoft.AspNetCore.Localization;
 @using Microsoft.Extensions.Options;
-
+@inject IViewLocalizer _localizer;
 
 @{
-    var name = ViewBag.Name;
     var requestFeatures = Context.Features.Get<IRequestCultureFeature>();
+    var name = ViewBag.Name;
 }
+<h1>name getten from thead resource file</h1>
+<h1>@name from the asp-controller itself</h1>
+<h1>@_localizer["name"].Value</h1>
 <a asp-controller="Test" asp-action="Create" class="btn btn-primary">Create</a>
 <table class="table table-striped">
     <thead>
